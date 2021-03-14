@@ -18,9 +18,11 @@ type Lane interface {
 	// Direction gets the lane's direction indicator
 	Direction() Direction
 	// Next points to the lane this lane outputs to. must be a part of the same junction
-	Next() []Lane
+	DestinationLanes() []Lane
+	// Add a possible lane for this lane to feed into
+	AddDestination(lanes ...Lane)
 	// Does the lane point to a receiving lane?
-	HasNext() bool
+	HasDestination() bool
 	Identify() string
 }
 
@@ -34,7 +36,7 @@ type FIFOLane struct {
 }
 
 // NewFIFOLane instantiates a new FIFO lane
-func NewFIFOLane(direction Direction, name string) *FIFOLane {
+func NewFIFOLane(name string, direction Direction) *FIFOLane {
 	return &FIFOLane{
 		direction: direction,
 		queue:     list.New(),
@@ -82,8 +84,8 @@ func (l *FIFOLane) IsTurnLane() bool {
 	return l.TurnLane
 }
 
-// Next returns the lane which this lane feeds to
-func (l FIFOLane) Next() []Lane {
+// DestinationLanes returns the lanes which this lane feeds to
+func (l FIFOLane) DestinationLanes() []Lane {
 	return l.NextLanes
 }
 
@@ -92,9 +94,16 @@ func (l FIFOLane) Direction() Direction {
 	return l.direction
 }
 
-// HasNext - does the lane have a destination for exiting traffic?
-func (l FIFOLane) HasNext() bool {
+// HasDestination - does the lane have a destination for exiting traffic?
+func (l FIFOLane) HasDestination() bool {
 	return len(l.NextLanes) > 0
+}
+
+// AddDestination adds possible outbound lanes following this one
+func (l *FIFOLane) AddDestination(lanes ...Lane) {
+	for _, lane := range lanes {
+		l.NextLanes = append(l.NextLanes, lane)
+	}
 }
 
 // Identify the lane by name

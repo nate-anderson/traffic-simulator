@@ -4,11 +4,25 @@ package traffic
 // It represents a junction of multiple arms
 type Junction struct {
 	// Arms are the intersection's arms
-	Lanes []Lane
+	EnteringLanes []Lane
 	// Select determines which lanes in each arm should proceed
 	AllowsLane ProceedFunc
 	// junction identifier
 	Identifier string
+}
+
+// NewJunction instantiates a junction
+func NewJunction(identifier string) *Junction {
+	return &Junction{
+		Identifier: identifier,
+	}
+}
+
+// AddEnteringLanes to the junction
+func (j *Junction) AddEnteringLanes(lanes ...Lane) {
+	for _, lane := range lanes {
+		j.EnteringLanes = append(j.EnteringLanes, lane)
+	}
 }
 
 // ProceedFunc is a function type for determining which lanes should allow traffic to proceed

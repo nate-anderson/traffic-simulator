@@ -10,10 +10,10 @@ Input from the south, outputs to the west, north, east
 // SimpleIntersection demonstrates a simple intersection simulation
 func SimpleIntersection() {
 	// create lanes
-	input := traffic.NewFIFOLane(traffic.DirectionN, "northbound input")
-	outputNorth := traffic.NewFIFOLane(traffic.DirectionN, "northbound output")
-	outputWest := traffic.NewFIFOLane(traffic.DirectionW, "westbound output")
-	outputEast := traffic.NewFIFOLane(traffic.DirectionE, "eastbound output")
+	input := traffic.NewFIFOLane("northbound input", traffic.DirectionN)
+	outputNorth := traffic.NewFIFOLane("northbound output", traffic.DirectionN)
+	outputWest := traffic.NewFIFOLane("westbound output", traffic.DirectionW)
+	outputEast := traffic.NewFIFOLane("eastbound output", traffic.DirectionE)
 
 	input.NextLanes = []traffic.Lane{
 		outputNorth,
@@ -25,7 +25,7 @@ func SimpleIntersection() {
 	input.AddInitialVehicles(incomingVehicles...)
 
 	junction := traffic.Junction{
-		Lanes: []traffic.Lane{
+		EnteringLanes: []traffic.Lane{
 			input, outputNorth, outputWest, outputEast,
 		},
 		Identifier: "Simple Intersection",
