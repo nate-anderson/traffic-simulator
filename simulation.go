@@ -19,9 +19,11 @@ func NewSimulation(name string, vehiclesPerTick int, ticks int) *Simulation {
 	}
 }
 
-// AddJunction to a simulation
-func (s *Simulation) AddJunction(j *Junction) {
-	s.Junctions = append(s.Junctions, j)
+// AddJunctions to a simulation
+func (s *Simulation) AddJunctions(junctions ...*Junction) {
+	for _, j := range junctions {
+		s.Junctions = append(s.Junctions, j)
+	}
 }
 
 // Run runs the simulation as configured
