@@ -7,7 +7,8 @@ import (
 
 func main() {
 	demos := map[string]func(){
-		"simpleintersection": SimpleIntersection,
+		"intersection:simple":  simpleIntersection,
+		"intersection:fourway": fourWayIntersection,
 	}
 
 	if len(os.Args) < 2 {
