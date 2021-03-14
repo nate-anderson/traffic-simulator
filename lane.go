@@ -22,6 +22,7 @@ type Lane interface {
 	// Add a possible lane for this lane to feed into
 	AddDestination(lanes ...Lane)
 	// Does the lane point to a receiving lane?
+	AddInitialVehicles(vehicles ...Vehicle)
 	HasDestination() bool
 	Identify() string
 }

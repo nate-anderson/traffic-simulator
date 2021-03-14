@@ -32,7 +32,7 @@ func (s Simulation) Run() {
 			for _, lane := range junction.EnteringLanes {
 				// if the junction allows the lane to pass traffic, and the lane has a destination lane
 				// to pass traffic to, handle updates to the lane
-				if junction.AllowsLane(lane) && lane.HasDestination() {
+				if junction.Proceed(lane) && lane.HasDestination() {
 					for i := 0; i < s.VehiclesPerTick; i++ {
 						destLanes := lane.DestinationLanes()
 						crossingVehicle, exists := lane.GetDeparture()

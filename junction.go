@@ -6,15 +6,16 @@ type Junction struct {
 	// Arms are the intersection's arms
 	EnteringLanes []Lane
 	// Select determines which lanes in each arm should proceed
-	AllowsLane ProceedFunc
+	Proceed ProceedFunc
 	// junction identifier
 	Identifier string
 }
 
 // NewJunction instantiates a junction
-func NewJunction(identifier string) *Junction {
+func NewJunction(identifier string, proceed ProceedFunc) *Junction {
 	return &Junction{
 		Identifier: identifier,
+		Proceed:    proceed,
 	}
 }
 
