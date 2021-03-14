@@ -92,7 +92,7 @@ func fourWayIntersection() {
 
 	// create simulation, 10 ticks, 3 vehicles per tick
 	sim := traffic.NewSimulation("Four-way Intersection Simulation", 3, 10)
-	sim.AddJunction(intersection)
+	sim.AddJunctions(intersection)
 	sim.Run()
 
 }

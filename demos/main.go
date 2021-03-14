@@ -9,6 +9,7 @@ func main() {
 	demos := map[string]func(){
 		"intersection:simple":  simpleIntersection,
 		"intersection:fourway": fourWayIntersection,
+		"turnlane:simple":      turningLane,
 	}
 
 	if len(os.Args) < 2 {
