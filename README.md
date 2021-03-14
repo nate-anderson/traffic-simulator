@@ -1,6 +1,6 @@
 # Traffic Simulator
 
-This package provides an framework for simulating traffic systems. It attempts to be general-purpose and unopinionated, but is very new and may have significant shortcomings.
+This package provides an framework for simulating traffic systems. It attempts to be general-purpose and unopinionated, but is very new and may have significant shortcomings. Simulations are non-realtime. This is just something I'm experimenting with and interested in learning about,
 
 ## How to use this
 
