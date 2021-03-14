@@ -36,6 +36,6 @@ func simpleIntersection() {
 	}
 
 	sim := traffic.NewSimulation("Simple intersection", 5, 5)
-	sim.AddJunction(&junction)
+	sim.AddJunctions(&junction)
 	sim.Run()
 }
