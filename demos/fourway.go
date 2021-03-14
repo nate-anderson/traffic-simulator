@@ -2,6 +2,7 @@ package main
 
 import (
 	"math/rand"
+	"os"
 
 	"github.com/nate-anderson/traffic-simulator"
 )
@@ -93,6 +94,7 @@ func fourWayIntersection() {
 	// create simulation, 10 ticks, 3 vehicles per tick
 	sim := traffic.NewSimulation("Four-way Intersection Simulation", 3, 10)
 	sim.AddJunctions(intersection)
-	sim.Run()
+	report := sim.Run()
+	report.Write(os.Stdout)
 
 }

@@ -14,6 +14,10 @@ func main() {
 
 	if len(os.Args) < 2 {
 		fmt.Println("usage: demo [demoname]")
+		fmt.Println("demos available: ")
+		for key := range demos {
+			fmt.Println("   ", key)
+		}
 		return
 	}
 

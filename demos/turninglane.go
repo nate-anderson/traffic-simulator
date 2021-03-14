@@ -1,6 +1,10 @@
 package main
 
-import "github.com/nate-anderson/traffic-simulator"
+import (
+	"os"
+
+	"github.com/nate-anderson/traffic-simulator"
+)
 
 /*
 Turning lane leading to an eastbound turn. Demonstrates use of `traffic.Junction` for added lanes.
@@ -51,5 +55,6 @@ func turningLane() {
 	// create simulation
 	sim := traffic.NewSimulation("Turn lane", 2, 10)
 	sim.AddJunctions(turnLaneJxn, jxn)
-	sim.Run()
+	report := sim.Run()
+	report.Write(os.Stdout)
 }

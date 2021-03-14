@@ -1,6 +1,10 @@
 package main
 
-import "github.com/nate-anderson/traffic-simulator"
+import (
+	"os"
+
+	"github.com/nate-anderson/traffic-simulator"
+)
 
 /*
 Simple intersection with one one-way input and three one-way outputs
@@ -37,5 +41,6 @@ func simpleIntersection() {
 
 	sim := traffic.NewSimulation("Simple intersection", 5, 5)
 	sim.AddJunctions(&junction)
-	sim.Run()
+	report := sim.Run()
+	report.Write(os.Stdout)
 }
