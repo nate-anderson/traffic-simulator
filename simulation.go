@@ -1,7 +1,5 @@
 package traffic
 
-import "fmt"
-
 // Simulation runs a traffic simulation with one or more junctions
 type Simulation struct {
 	Name            string
@@ -51,7 +49,6 @@ func (s Simulation) Run() SimulationReport {
 								ToLane:     targetLane,
 							}
 							report = append(report, reportEntry)
-							fmt.Printf("Tick %d: Vehicle %d [JXN '%s']: => lane '%s' (direction %s)\n", tick, crossingVehicle.Identify(), junction.Identifier, targetLane.Identify(), targetLane.Direction().String())
 						}
 					}
 				}
