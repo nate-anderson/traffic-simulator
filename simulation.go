@@ -27,7 +27,8 @@ func (s *Simulation) AddJunctions(junctions ...*Junction) {
 }
 
 // Run runs the simulation as configured
-func (s Simulation) Run() {
+func (s Simulation) Run() SimulationReport {
+	report := SimulationReport{}
 	for tick := 0; tick < s.Ticks; tick++ {
 		for _, junction := range s.Junctions {
 			for _, lane := range junction.EnteringLanes {
@@ -42,6 +43,14 @@ func (s Simulation) Run() {
 							// determine which lane the vehicle selects, and pass it along
 							targetLane := crossingVehicle.SelectLane(destLanes)
 							targetLane.GiveArrival(crossingVehicle)
+							reportEntry := VehicleMovement{
+								Tick:       tick,
+								Vehicle:    crossingVehicle,
+								InJunction: junction,
+								FromLane:   lane,
+								ToLane:     targetLane,
+							}
+							report = append(report, reportEntry)
 							fmt.Printf("Tick %d: Vehicle %d [JXN '%s']: => lane '%s' (direction %s)\n", tick, crossingVehicle.Identify(), junction.Identifier, targetLane.Identify(), targetLane.Direction().String())
 						}
 					}
@@ -49,4 +58,5 @@ func (s Simulation) Run() {
 			}
 		}
 	}
+	return report
 }
