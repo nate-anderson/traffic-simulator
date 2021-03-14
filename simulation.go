@@ -30,7 +30,6 @@ func (s *Simulation) AddJunctions(junctions ...*Junction) {
 func (s Simulation) Run() {
 	for tick := 0; tick < s.Ticks; tick++ {
 		for _, junction := range s.Junctions {
-			fmt.Printf("Junction %s\n", junction.Identifier)
 			for _, lane := range junction.EnteringLanes {
 				// if the junction allows the lane to pass traffic, and the lane has a destination lane
 				// to pass traffic to, handle updates to the lane
