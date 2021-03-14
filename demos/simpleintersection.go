@@ -7,8 +7,8 @@ Simple intersection with one one-way input and three one-way outputs
 Input from the south, outputs to the west, north, east
 */
 
-// SimpleIntersection demonstrates a simple intersection simulation
-func SimpleIntersection() {
+// simpleIntersection demonstrates a simple intersection simulation
+func simpleIntersection() {
 	// create lanes
 	input := traffic.NewFIFOLane("northbound input", traffic.DirectionN)
 	outputNorth := traffic.NewFIFOLane("northbound output", traffic.DirectionN)
@@ -29,7 +29,7 @@ func SimpleIntersection() {
 			input, outputNorth, outputWest, outputEast,
 		},
 		Identifier: "Simple Intersection",
-		AllowsLane: func(l traffic.Lane) bool {
+		Proceed: func(l traffic.Lane) bool {
 			// north input lane is the only input lane, always allow it to proceed
 			return l.Direction() == traffic.DirectionN
 		},
